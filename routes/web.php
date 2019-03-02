@@ -29,7 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 ///////////////
 
 
-Route::group(['prefix'=>'admin','as'=>'admin'],function (){
+Route::group(['prefix'=>'admin','as'=>'admin','middleware'=>['auth','admin']],function (){
 
     Route::get('/','AdminController@index');
     Route::get('/dashboard','AdminController@index');
