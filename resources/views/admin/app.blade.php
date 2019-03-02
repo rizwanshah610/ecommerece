@@ -13,25 +13,28 @@
 
 
     {{--Admin CSS--}}
-    @yield('admin_css')
+    <link rel="stylesheet" type="text/css" href="{{asset('css/admin.css')}}">
 
     {{--Feather icons javascript--}}
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
-    <div>
-        {{--@include('inc.navbar')--}}
-    </div>
-    <div>
-        @include('inc.session_message')
-    </div>
-    <div class="row">
-        @include('admin.partials.topnavbar');
-        @include('admin.partials.navbar');
-        @yield('content')
-    </div>
+
+    @include('inc.session_message')
+
+    @include('admin.partials.navbar')
+
+    @include('admin.partials.sidebar')
+
+    @include('admin.partials.middlebar')
+
+    @yield('content')
+</main>
+
 {{--javascript--}}
 <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+
 </body>
 </html>

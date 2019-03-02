@@ -19170,6 +19170,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+feather.replace();
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

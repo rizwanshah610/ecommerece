@@ -23,10 +23,29 @@ Route::post('album/store','AlbumsController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Admin Controllers
+
+/////////////////
+//Admin Routes//
+///////////////
+
 
 Route::group(['prefix'=>'admin','as'=>'admin'],function (){
+
     Route::get('/','AdminController@index');
     Route::get('/dashboard','AdminController@index');
+
+/////////////
+//Products//
+///////////
+
+    Route::get('/products','ProductsController@index');
+
+/////////////
+//Categories/
+////////////
+
+
+    Route::get('/categories','CategoriesController@index');
+
 });
 
