@@ -28,7 +28,9 @@
 
     @include('admin.partials.sidebar')
 
+    @if(request()->is('admin/dashboard'))
     @include('admin.partials.middlebar')
+    @endif
 
     @yield('content')
 </main>

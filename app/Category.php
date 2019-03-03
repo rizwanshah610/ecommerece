@@ -12,4 +12,8 @@ class Category extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    public function products(){
+        return $this->belongsToMany('App\Product');
+    }
+
 }
