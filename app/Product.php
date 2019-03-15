@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
+    protected $table = 'products';
+    protected $fillable = ['title','description','image','size','category_id','price'];
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
     public  function categories(){
-        return $this->belongsToMany('App\Category');
+        return $this->belongsTo('App\Category');
     }
 }

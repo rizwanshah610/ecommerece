@@ -20,10 +20,11 @@ class AdminController extends Controller
      */
     public function index()
     {
+
 //        $user = User::get()->roles->name;
 //        dd($user);
 //        exit;
-       return view('admin.dashboard');
+       return view('admin.index');
     }
 
     /**

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use Illuminate\Http\Request;
+//namespace App\helper;
+use function Composer\Autoload\includeFile;use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class CategoriesController extends Controller
 {
@@ -14,8 +16,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-//        $categories = Category::all();
-//        return view('admin.categories.index',compact('categories'));
+
+        return view('admin.categories.index',compact('categories'));
     }
 
     /**
@@ -25,7 +27,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories.create',compact('categories'));
     }
 
     /**
@@ -36,7 +39,23 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+//        $request->validate([
+//            'title'=>'required|minlength:5',
+//            'description'=>'required|minlength:5',
+//
+//        ]);
+
+//        $categories = Category::create($request->only('title','description'));
+        $category = new Category();
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');
+        $category->parent_id = Input::get('parent_id');
+        $category->save();
+//        $category->parents()->attach($request->id,$request->parent_id,['created_at'=>now(), 'updated_at'=>now()]);
+        redirect('/admin')->with('message','Category enters successfully');
+
+
     }
 
     /**

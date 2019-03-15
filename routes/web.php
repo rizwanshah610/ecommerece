@@ -13,39 +13,52 @@
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('album/index','AlbumsController@index');
-Route::get('album/create','AlbumsController@create');
-Route::post('album/store','AlbumsController@store');
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/logout','Auth\LoginController@logout');
 
 
+            ///////////////
+            // Front End  /
+            //////////////
+
+
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/shirts', 'HomeController@shirts')->name('shirts');
+Route::get('/shirt', 'HomeController@shirt')->name('shirt');
 
 
-/////////////////
-//Admin Routes//
-///////////////
+            ///////////////
+            //Admin Routes/
+            //////////////
 
 
 Route::group(['prefix'=>'admin','as'=>'admin','middleware'=>['auth','admin']],function (){
 
     Route::get('/','AdminController@index');
-    Route::get('/dashboard','AdminController@index');
+    Route::get('/index','AdminController@index');
 
-/////////////
-//Products//
-///////////
+            ///////////
+            //Products/
+            //////////
 
     Route::get('/products','ProductsController@index');
+    Route::get('/product/create','ProductsController@create');
+    Route::post('/product/store','ProductsController@store');
 
-/////////////
-//Categories/
-////////////
-
+            /////////////
+            //Categories/
+            ////////////
 
     Route::get('/categories','CategoriesController@index');
+    Route::get('/categories/add','CategoriesController@create');
+    Route::post('/categories/store','CategoriesController@store');
+
+
 
 });
 

@@ -9,7 +9,20 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
+    "autoload": {
+        "classmap": [
+        ],
+        "files": [
+            "app/Helper/helpers.php"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+
+    },
+
     "devDependencies": {
+        "laravelcollective/html":"^5.4.0",
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
@@ -23,6 +36,7 @@
         "vue-template-compiler": "^2.6.6"
     },
     "dependencies": {
-        "feather-icons": "^4.19.0"
+        "feather-icons": "^4.19.0",
+        "select2": "^4.0.6-rc.1"
     }
 }

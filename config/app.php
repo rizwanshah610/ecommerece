@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // LaravelCollective
         Collective\Html\HtmlServiceProvider::class,
+
         
 
 
@@ -181,6 +182,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // FormServiceProvider
         App\Providers\FormServiceProvider::class,
+
+        Unisharp\Ckeditor\ServiceProvider::class,
 
 
     ],
