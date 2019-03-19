@@ -7,7 +7,7 @@
     <br/>
     <h2 >
         <strong>
-            Hey! Welcome to MC- Mykey's Store
+            Hey! Welcome to MC Store
         </strong>
     </h2>
     <br>
@@ -23,11 +23,12 @@
 <!-- Latest SHirts -->
 <div class="row">
     <div class="row">
-        @forelse($shirts as $shirt)
+        @forelse($shirts->chunk(4) as $chunk)
+            @foreach($chunk as $shirt)
             <div class="small-3 columns">
                 <div class="item-wrapper">
                     <div class="img-wrapper">
-                        <a class="button expanded add-to-cart">
+                        <a href="{{url('cart/edit',$shirt->id)}}" class="button expanded add-to-cart">
                             Add to Cart
                         </a>
                         <a href="#">
@@ -47,8 +48,10 @@
                     </p>
                 </div>
             </div>
+            @endforeach
         @empty
             <h2>No products</h2>
+
         @endforelse
 
     </div>

@@ -6,6 +6,7 @@ use App\Category;
 //namespace App\helper;
 use function Composer\Autoload\includeFile;use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
 {
@@ -16,7 +17,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-
+        $categories = Category::all();
         return view('admin.categories.index',compact('categories'));
     }
 
@@ -39,6 +40,16 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        //Create slug of name
+        $slug_title = str_slug($request->name,'-');
+        //Store data in database
+        $category = new Category();
+        $category->title = $request->input('name');
+        $category->slug = $slug_title;
+        $category->save();
+        return back()->with('message','Category added successfully');
+
+
 
 //        $request->validate([
 //            'title'=>'required|minlength:5',
@@ -47,13 +58,13 @@ class CategoriesController extends Controller
 //        ]);
 
 //        $categories = Category::create($request->only('title','description'));
-        $category = new Category();
-        $category->title = $request->input('title');
-        $category->description = $request->input('description');
-        $category->parent_id = Input::get('parent_id');
-        $category->save();
-//        $category->parents()->attach($request->id,$request->parent_id,['created_at'=>now(), 'updated_at'=>now()]);
-        redirect('/admin')->with('message','Category enters successfully');
+//        $category = new Category();
+//        $category->title = $request->input('title');
+//        $category->description = $request->input('description');
+//        $category->parent_id = Input::get('parent_id');
+//        $category->save();
+////        $category->parents()->attach($request->id,$request->parent_id,['created_at'=>now(), 'updated_at'=>now()]);
+//        redirect('/admin')->with('message','Category enters successfully');
 
 
     }
@@ -65,8 +76,12 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+
     {
-        //
+        $products = Category::find($id)->products;
+        $categories = Category::all();
+        return view('admin.categories.index',compact('categories','products'));
+
     }
 
     /**

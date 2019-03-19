@@ -6,13 +6,24 @@
             <li class="current"><a href="{{url('/admin')}}"><i class="glyphicon glyphicon-home"></i>
                     Dashboard</a></li>
             <li class="submenu">
-                <a href="#">
+                <a href="{{url('/admin/products')}}">
                     <i class="glyphicon glyphicon-list"></i> Products
                     <span class="caret pull-right"></span>
                 </a>
                 <!-- Sub menu -->
                 <ul>
+                    <li><a href="{{url('/admin/products')}}">Product</a></li>
                     <li><a href="{{url('/admin/product/create')}}">Add Product</a></li>
+                </ul>
+            </li>
+            <li class="submenu">
+                <a href="{{url('/admin/categories')}}">
+                    <i class="glyphicon glyphicon-list"></i> Categories
+                    <span class="caret pull-right"></span>
+                </a>
+                <!-- Sub menu -->
+                <ul>
+                    <li><a href="{{url('/admin/categories')}}">Category</a></li>
                 </ul>
             </li>
         </ul>

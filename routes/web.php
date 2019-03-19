@@ -31,6 +31,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shirts', 'HomeController@shirts')->name('shirts');
 Route::get('/shirt', 'HomeController@shirt')->name('shirt');
 
+            //////////
+            // Cart//
+            ////////
+Route::get('/cart','CartController@index');
+Route::get('/cart/edit/{id}','CartController@edit');
+Route::post('/cart/update/{id}','CartController@update');
+
+
+
+            /////////////
+            //Back End//
+            ///////////
 
             ///////////////
             //Admin Routes/
@@ -57,6 +69,7 @@ Route::group(['prefix'=>'admin','as'=>'admin','middleware'=>['auth','admin']],fu
     Route::get('/categories','CategoriesController@index');
     Route::get('/categories/add','CategoriesController@create');
     Route::post('/categories/store','CategoriesController@store');
+    Route::get('/categories/show/{id}','CategoriesController@show');
 
 
 
