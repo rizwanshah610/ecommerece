@@ -10,6 +10,7 @@
                 <th>Price</th>
                 <th>Qty</th>
                 <th>Size</th>
+                <th>Action</th>
             </tr>
             </thead>
 
@@ -21,13 +22,25 @@
                         {{$cartItem->name}}
                     </td>
                     <td>{{$cartItem->price}}</td>
-                    <td width="1px">
-                        {!! Form::open(['url' => ['cart/update',$cartItem->rowId],'method' => 'post']) !!}
-                        <input name="qty" class="form-control" type="text" value = {{$cartItem->qty}}>
-                        <input type="submit" class="btn btn-danger btn-sm " value="Update">
-                        {!! Form::close() !!}
+                    <td width="50px">
+                        {!! Form::open(['url' => ['cart/update',$cartItem->rowId], 'method' => 'post']) !!}
+                        <input name="qty" type="text" value="{{$cartItem->qty}}">
+
+
                     </td>
-                    <td>{{$cartItem->options->has('size') ? $cartItem->options->size : ''}}</td>
+                    <td>
+                        <div > {!! Form::select('size', ['small'=>'Small','medium'=>'Medium','large'=>'Large'] , $cartItem->options->has('size')?$cartItem->options->size:'' ) !!}
+                        </div>
+
+                    </td>
+
+                    <td>
+                        <input style="float: left"  type="submit" class="button success small" value="Update">
+                        {!! Form::close() !!}
+                        {{Form::open(['url' => ['cart/delete', $cartItem->rowId] ,'method' => 'post' ])}}
+                        <input style="float: left"  type="submit" class="button alert small" value="Delete">
+                        {{ Form::close() }}
+                    </td>
 
                 </tr>
             @endforeach
@@ -40,10 +53,11 @@
                 </td>
                 <td>Items:{{Cart::count()}}</td>
                 <td></td>
+                <td></td>
             </tr>
             </tbody>
         </table>
-        <a href="#" class="button">Checkout</a>
+        <a href="{{url('checkout')}}" class="button">Checkout</a>
     </div>
 
     @endsection

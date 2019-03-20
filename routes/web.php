@@ -31,12 +31,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shirts', 'HomeController@shirts')->name('shirts');
 Route::get('/shirt', 'HomeController@shirt')->name('shirt');
 
+//Checkout Controller
+Route::get('/checkout','CheckoutController@shipping');
+
             //////////
             // Cart//
             ////////
 Route::get('/cart','CartController@index');
-Route::get('/cart/edit/{id}','CartController@edit');
+Route::get('/cart/create/{id}','CartController@create');
 Route::post('/cart/update/{id}','CartController@update');
+Route::post('/cart/delete/{id}','CartController@destroy');
 
 
 
