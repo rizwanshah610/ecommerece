@@ -31,8 +31,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/shirts', 'HomeController@shirts')->name('shirts');
 Route::get('/shirt', 'HomeController@shirt')->name('shirt');
 
-//Checkout Controller
+//Checkout route
 Route::get('/checkout','CheckoutController@shipping');
+
+//Shipping detail route
+Route::post('/shipping/store/admin/products','ProfilesController@store');
 
             //////////
             // Cart//

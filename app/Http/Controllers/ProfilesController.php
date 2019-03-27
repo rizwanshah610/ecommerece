@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
@@ -34,7 +35,24 @@ class ProfilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'name' => 'required',
+           'address' =>'required',
+           'city' =>'required',
+            'zip' =>'required',
+            'country' =>'required',
+            'phone' =>'required',
+        ]);
+
+        $profile = new Profile();
+        $profile->name = $request->input('name');
+        $profile->address = $request->input('address');
+        $profile->city = $request->input('city');
+        $profile->zip = $request->input('zip');
+        $profile->country = $request->input('country');
+        $profile->phone = $request->input('phone');
+        $profile->save();
+        return back()->with('message','Shipping save successfully');
     }
 
     /**

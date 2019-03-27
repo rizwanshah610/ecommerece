@@ -4,20 +4,20 @@
         <div class="small-6 small-centered columns">
             <h3>Shipping Info</h3>
 
-            {!! Form::open([ 'method' => 'post']) !!}
+            {!! Form::open([ 'url' => 'shipping/store' , 'method' => 'post']) !!}
+            <div class="form-group">
+                {{ Form::label('name', 'Name') }}
+                {{ Form::text('name', null, array('class' => 'form-control')) }}
+            </div>
 
             <div class="form-group">
-                {{ Form::label('addressline', 'Address Line') }}
-                {{ Form::text('addressline', null, array('class' => 'form-control')) }}
+                {{ Form::label('address', 'Address') }}
+                {{ Form::text('address', null, array('class' => 'form-control')) }}
             </div>
 
             <div class="form-group">
                 {{ Form::label('city', 'City') }}
                 {{ Form::text('city', null, array('class' => 'form-control')) }}
-            </div>
-            <div class="form-group">
-                {{ Form::label('state', 'State') }}
-                {{ Form::text('state', null, array('class' => 'form-control')) }}
             </div>
             <div class="form-group">
                 {{ Form::label('zip', 'Zip') }}
