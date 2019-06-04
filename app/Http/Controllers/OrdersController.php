@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -11,9 +12,24 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function orders($type = '')
     {
-        //
+        if($type == 'pending')
+        {
+            $orders = Order::where('status',0)->get();
+        }
+        elseif ($type == 'delivered')
+        {
+            $orders = Order::where('status',1)->get();
+
+        }
+        else
+        {
+            $orders = Order::all();
+        }
+        return view('admin.orders',compact('orders'));
+        
+
     }
 
     /**

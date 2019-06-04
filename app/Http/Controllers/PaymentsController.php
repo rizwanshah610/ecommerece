@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Stripe\Checkout\Session;
 use Stripe;
 
@@ -27,16 +28,30 @@ class PaymentsController extends Controller
      */
     public function stripePost(Request $request)
     {
+        $cart_total = round(\Gloudemans\Shoppingcart\Facades\Cart::total());
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         Stripe\Charge::create ([
-            "amount" => Cart::total()*100,
+            "amount" => $cart_total,
             "currency" => "usd",
             "source" => $request->stripeToken,
             "description" => "Payment through stripe."
         ]);
 
 
-        return back()->with('success', 'Payment successful!');
+        $user=Auth::user();
+        $order=$user->orders()->create([
+            'total'=>$cart_total,
+            'status'=>0
+        ]);
+        $cartItems=\Gloudemans\Shoppingcart\Facades\Cart::content();
+        foreach ($cartItems as $cartItem){
+            $order->orderItems()->attach($cartItem->id,[
+                'qty'=>$cartItem->qty,
+                'total'=>$cartItem->qty*$cartItem->price
+            ]);
+        }
+
+//        return back()->with('success', 'Payment successful!');
     }
 
     /**
