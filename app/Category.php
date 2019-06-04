@@ -15,7 +15,7 @@ class Category extends Model
     protected $dates = ['deleted_at'];
     protected $table = 'categories';
 
-    public function products(){
+    public function product(){
         return $this->hasMany('App\Product');
     }
     public function parents(){

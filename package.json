@@ -33,7 +33,11 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
-        "vue-template-compiler": "^2.6.6"
+        "vue-template-compiler": "^2.6.6",
+        "guzzlehttp/guzzle": "~5.4",
+        "paypal/rest-api-sdk-php": "*",
+        "cartalyst/stripe-laravel": "9.0.*"
+
     },
     "dependencies": {
         "feather-icons": "^4.19.0",

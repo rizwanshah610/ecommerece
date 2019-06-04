@@ -35,13 +35,20 @@ Route::get('/shirt', 'HomeController@shirt')->name('shirt');
 Route::get('/checkout','CheckoutController@shipping');
 
 //Shipping detail route
-Route::post('/shipping/store/admin/products','ProfilesController@store');
+Route::post('/store/shipping/info','ProfilesController@store');
+
+//Payment route
+
+Route::get('/stripe', 'PaymentsController@index');
+Route::post('/stripe/post','PaymentsController@stripePost');
+
+
 
             //////////
             // Cart//
             ////////
 Route::get('/cart','CartController@index');
-Route::get('/cart/create/{id}','CartController@create');
+Route::get('/cart/additems/{id}','CartController@addItems');
 Route::post('/cart/update/{id}','CartController@update');
 Route::post('/cart/delete/{id}','CartController@destroy');
 
@@ -68,6 +75,8 @@ Route::group(['prefix'=>'admin','as'=>'admin','middleware'=>['auth','admin']],fu
     Route::get('/products','ProductsController@index');
     Route::get('/product/create','ProductsController@create');
     Route::post('/product/store','ProductsController@store');
+    Route::get('/product/show/{id}','ProductsController@show');
+    Route::post('/product/delete/{id}','ProductsController@destroy');
 
             /////////////
             //Categories/

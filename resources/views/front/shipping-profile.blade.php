@@ -4,7 +4,7 @@
         <div class="small-6 small-centered columns">
             <h3>Shipping Info</h3>
 
-            {!! Form::open([ 'url' => 'shipping/store' , 'method' => 'post']) !!}
+            {!! Form::open([ 'url' => 'store/shipping/info' , 'method' => 'post']) !!}
             <div class="form-group">
                 {{ Form::label('name', 'Name') }}
                 {{ Form::text('name', null, array('class' => 'form-control')) }}

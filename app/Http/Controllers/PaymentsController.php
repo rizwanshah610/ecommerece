@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Gloudemans\Shoppingcart\Cart;
 use Illuminate\Http\Request;
+
+use Stripe\Checkout\Session;
+use Stripe;
 
 class PaymentsController extends Controller
 {
@@ -13,7 +17,26 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        //
+        return view('front.payment');
+    }
+
+    /**
+     * success response method.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stripePost(Request $request)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+            "amount" => Cart::total()*100,
+            "currency" => "usd",
+            "source" => $request->stripeToken,
+            "description" => "Payment through stripe."
+        ]);
+
+
+        return back()->with('success', 'Payment successful!');
     }
 
     /**

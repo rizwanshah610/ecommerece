@@ -13,7 +13,7 @@ class Product extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
-    public  function categories(){
+    public  function category(){
         return $this->belongsTo('App\Category');
     }
 }

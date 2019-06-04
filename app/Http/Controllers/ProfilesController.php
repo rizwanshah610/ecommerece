@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilesController extends Controller
 {
@@ -44,6 +45,7 @@ class ProfilesController extends Controller
             'phone' =>'required',
         ]);
 
+
         $profile = new Profile();
         $profile->name = $request->input('name');
         $profile->address = $request->input('address');
@@ -51,8 +53,10 @@ class ProfilesController extends Controller
         $profile->zip = $request->input('zip');
         $profile->country = $request->input('country');
         $profile->phone = $request->input('phone');
+        $profile->user_id = Auth::user()->id;
         $profile->save();
-        return back()->with('message','Shipping save successfully');
+        return redirect('/stripe');
+//        return back()->with('message','Shipping save successfully');
     }
 
     /**

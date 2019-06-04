@@ -64,7 +64,7 @@ class ProductsController extends Controller
          //Store data
 
         Product::create($formInput);
-         return redirect('/admin')->with('message','Product added successfully');
+         return redirect('/admin/product/create')->with('message','Product added successfully');
 
 
     }
@@ -77,7 +77,10 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $products = Product::find($id)->category()->pluck('title');
+        dd($products);
+        return view('admin.products.index',compact('products'));
     }
 
     /**
@@ -111,6 +114,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('admin/products')->with('message','Product deleted successfully');
     }
 }

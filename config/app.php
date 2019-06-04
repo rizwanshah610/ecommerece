@@ -163,6 +163,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // LaravelCollective
         Collective\Html\HtmlServiceProvider::class,
+        //Stripe
+//        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+
 
         
 
@@ -237,6 +240,12 @@ return [
         // LaravelCollective
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        //Stripe
+//        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+
+
+
 
     ],
 
