@@ -12,26 +12,30 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function orders($type = '')
+    public function pendingorders()
     {
-        if($type == 'pending')
-        {
-            $orders = Order::where('status',0)->get();
-        }
-        elseif ($type == 'delivered')
-        {
-            $orders = Order::where('status',1)->get();
 
-        }
-        else
-        {
-            $orders = Order::all();
-        }
-        return view('admin.orders',compact('orders'));
-        
+            $orders = Order::where('status',0)->get();
+
+        return view('admin.orders.pending',compact('orders'));
 
     }
+    public function deliveredorders()
+    {
 
+        $orders = Order::where('status',1)->get();
+
+        return view('admin.orders.delivered',compact('orders'));
+
+    }
+    public function allorders()
+    {
+
+        $orders = Order::all();
+
+        return view('admin.orders.index',compact('orders'));
+
+    }
     /**
      * Show the form for creating a new resource.
      *

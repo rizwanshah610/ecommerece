@@ -79,7 +79,6 @@ class ProductsController extends Controller
     {
 
         $products = Product::find($id)->category()->pluck('title');
-        dd($products);
         return view('admin.products.index',compact('products'));
     }
 

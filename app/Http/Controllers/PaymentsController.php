@@ -38,6 +38,8 @@ class PaymentsController extends Controller
         ]);
 
 
+//        Create Order
+
         $user=Auth::user();
         $order=$user->orders()->create([
             'total'=>$cart_total,

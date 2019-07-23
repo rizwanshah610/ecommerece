@@ -87,6 +87,14 @@ Route::group(['prefix'=>'admin','as'=>'admin','middleware'=>['auth','admin']],fu
     Route::post('/categories/store','CategoriesController@store');
     Route::get('/categories/show/{id}','CategoriesController@show');
 
+            /////////////
+            //Orders/////
+            ////////////
+
+
+    Route::get('/orders/pending','OrdersController@pendingorders');
+    Route::get('/orders/delivered','OrdersController@deliveredorders');
+    Route::get('/orders','OrdersController@allorders');
 
 
 });

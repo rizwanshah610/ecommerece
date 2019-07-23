@@ -34,13 +34,14 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo('App\Role');
     }
+    public function order(){
+        return $this->hasMany('App\Order','id');
+    }
     public function address(){
         return $this->hasMany('App\Profile');
     }
 
-    public function orders(){
-        return $this->hasMany('App\Order');
-    }
+
 
 
 }
