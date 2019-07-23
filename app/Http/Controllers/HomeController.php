@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMailable;
 use App\Product;
-use Illuminate\Http\Request;
+use Illuminate\Mail\Mailer;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -33,5 +36,15 @@ class HomeController extends Controller
     }
     public function shirt(){
         return view('front.shirt');
+    }
+
+    public function mail(){
+        $data = array('name'=>'Your ordered is delivered');
+        Mail::send('emails.name',$data,function ($message){
+            $message->to(Auth::user()->email)
+                ->subject('Test email send or not')
+                ->from('rizwanshah610@gmail.com');
+        });
+        echo 'message sent';
     }
 }

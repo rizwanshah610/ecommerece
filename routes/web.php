@@ -97,5 +97,8 @@ Route::group(['prefix'=>'admin','as'=>'admin','middleware'=>['auth','admin']],fu
     Route::get('/orders','OrdersController@allorders');
 
 
+//Send Email
+    Route::get('/send/mail','HomeController@mail');
+
 });
 
